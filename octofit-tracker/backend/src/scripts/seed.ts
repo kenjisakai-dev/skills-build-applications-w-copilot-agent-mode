@@ -5,7 +5,7 @@
  */
 
 import mongoose from 'mongoose';
-import { connectDatabase } from '../database';
+import { connectDatabase } from '../config/database';
 import { User } from '../models/User';
 import { Team } from '../models/Team';
 import { Activity } from '../models/Activity';
