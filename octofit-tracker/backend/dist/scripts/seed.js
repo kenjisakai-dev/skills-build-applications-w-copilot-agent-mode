@@ -9,15 +9,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
+const database_1 = require("../database");
 const User_1 = require("../models/User");
 const Team_1 = require("../models/Team");
 const Activity_1 = require("../models/Activity");
 const Leaderboard_1 = require("../models/Leaderboard");
 const Workout_1 = require("../models/Workout");
-const MONGO_URI = 'mongodb://localhost:27017/octofit_db';
 async function seed() {
-    await mongoose_1.default.connect(MONGO_URI);
-    console.log('Connected to MongoDB — octofit_db');
+    await (0, database_1.connectDatabase)();
     // Clear existing data
     await Promise.all([
         User_1.User.deleteMany({}),
