@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react'
-import { API_BASE_URL } from '../api'
+
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME
+const API_URL = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/teams/`
+  : 'http://localhost:8000/api/teams/'
 
 export default function Teams() {
   const [teams, setTeams] = useState([])
@@ -7,7 +11,7 @@ export default function Teams() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/teams/`)
+    fetch(API_URL)
       .then(res => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
         return res.json()
